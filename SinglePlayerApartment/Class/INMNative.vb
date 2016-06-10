@@ -221,6 +221,12 @@ Namespace INMNative
             End Get
         End Property
 
+        Public ReadOnly Property HelipadEntranceDistance() As Single
+            Get
+                Return World.GetDistance(Game.Player.Character.Position, HelipadEntrance)
+            End Get
+        End Property
+        
         Public ReadOnly Property SaveDistance() As Single
             Get
                 Return World.GetDistance(Game.Player.Character.Position, Save)
