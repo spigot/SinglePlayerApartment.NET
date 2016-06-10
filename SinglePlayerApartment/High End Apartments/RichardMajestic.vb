@@ -23,9 +23,11 @@ Public Class RichardMajestic
                 Apartment.Description = ReadCfgValue("RichardDesc", langFile)
                 Apartment.Owner = ReadCfgValue("RMowner", saveFile)
                 Apartment.Entrance = New Vector3(-935.4753, -378.6128, 38.9613)
+                Apartment.HelipadEntrance = NewVector3(-935.4753, -379.6128, 38.9613)
                 Apartment.Save = New Vector3(-900.8789, -374.416, 79.2731)
                 Apartment.TeleportInside = New Vector3(-913.1502, -384.5727, 85.4804)
                 Apartment.TeleportOutside = New Vector3(-933.4771, -383.6144, 38.9613)
+                Apartment.TeleportHelipad = New Vector3(-933.4771, -383.6144, 38.9613)
                 Apartment.ApartmentExit = New Vector3(-916.3039, -384.9148, 85.4804)
                 Apartment.Wardrobe = New Vector3(-904.1464, -369.6518, 79.2839)
                 Apartment.GarageEntrance = New Vector3(-876.1354, -363.0524, 36.3538)
@@ -239,6 +241,7 @@ Public Class RichardMajestic
             _menuPool.Add(ExitMenuHL)
             ExitMenuHL.AddItem(New UIMenuItem(ExitApt))
             ExitMenuHL.AddItem(New UIMenuItem(EnterGarage))
+            ExitMenu.AddItem(New UIMenuItem(ExitAptHeli))
             ExitMenuHL.AddItem(New UIMenuItem(SellApt))
             ExitMenuHL.RefreshIndex()
         Catch ex As Exception
@@ -369,6 +372,16 @@ Public Class RichardMajestic
                 Wait(500)
                 Game.FadeScreenIn(500)
                 UnLoadMPDLCMap()
+                Apartment.IsAtHome = False
+            If selectedItem.Text = ExitAptHeli Then
+                'Exit Apt to roof helipad
+                ExitMenu.Visible = False
+                Game.FadeScreenOut(500)
+                Wait(&H3E8)
+                Brain.TVOn = False
+                Game.Player.Character.Position = Apartment.TeleportHelipad
+                Wait(500)
+                Game.FadeScreenIn(500)
                 Apartment.IsAtHome = False
             ElseIf selectedItem.Text = SellApt Then
                 'Sell Apt
@@ -856,7 +869,7 @@ Public Class RichardMajestic
             If My.Settings.RichardMajestic = "Enable" Then
 
                 'Enter Apartment
-                If (Not BuyMenu.Visible AndAlso Not playerPed.IsInVehicle AndAlso Not playerPed.IsDead) AndAlso Apartment.EntranceDistance < 3.0 Then
+                If (Not BuyMenu.Visible AndAlso Not playerPed.IsInVehicle AndAlso Not playerPed.IsDead) AndAlso (Apartment.EntranceDistance < 3.0 Or Apartment.HelipadEntrace < 3.0) Then
                     DisplayHelpTextThisFrame(EnterApartment & Apartment.Name)
                     If Game.IsControlJustPressed(0, GTA.Control.Context) Then
                         Game.FadeScreenOut(500)
