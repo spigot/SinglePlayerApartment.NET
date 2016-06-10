@@ -20,7 +20,7 @@ Public Class SinglePlayerApartment
     Public Shared LowEndLastLocationName As String = Nothing
 
     'Translate
-    Public Shared ExitApt, SellApt, EnterGarage, AptOptions, Garage, GrgOptions, GrgRemove, GrgRemoveAndDrive, GrgMove, GrgSell, GrgSelectVeh, GrgTooHot, GrgPlate, GrgRename, GrgTransfer, _Mechanic, _Pegasus, ChooseApt As String
+    Public Shared ExitApt, ExitAptHeli, SellApt, EnterGarage, AptOptions, Garage, GrgOptions, GrgRemove, GrgRemoveAndDrive, GrgMove, GrgSell, GrgSelectVeh, GrgTooHot, GrgPlate, GrgRename, GrgTransfer, _Mechanic, _Pegasus, ChooseApt As String
     Public Shared ModernStyle, MoodyStyle, VibrantStyle, SharpStyle, MonochromeStyle, SeductiveStyle, RegalStyle, AquaStyle, ChooseVeh, ChooseVehDesc, ReturnVeh, AptStyle, _Phone, PegasusDeliver, PegasusDelete, CannotStore As String
     Public Shared GrgFull, Reach10, MechanicBill, EnterElevator, ExitGarage, ManageGarage, Maze, Fleeca, BOL, ForSale, PropPurchased, InsFundApartment, EnterApartment, SaveGame, ExitApartment, ChangeClothes, _EnterGarage As String
 
@@ -64,6 +64,7 @@ Public Class SinglePlayerApartment
             Website.SouthernSA = ReadCfgValue("SouthernSA", langFile)
             Website.WarstockCache = ReadCfgValue("WarstockCache", langFile)
             ExitApt = ReadCfgValue("ExitApt", langFile)
+            ExitAptHeli = ReadCfgValue("ExitAptHeli", langFile)
             SellApt = ReadCfgValue("SellApt", langFile)
             EnterGarage = ReadCfgValue("EnterGarage", langFile)
             AptOptions = ReadCfgValue("AptOptions", langFile)
