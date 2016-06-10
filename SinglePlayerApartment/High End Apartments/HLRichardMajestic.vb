@@ -18,6 +18,7 @@ Public Class HLRichardMajestic
     Public Shared Save As Vector3 = New Vector3(-901.0586, -369.1378, 113.0741)
     Public Shared Teleport As Vector3 = New Vector3(-922.1152, -370.0627, 114.3101)
     Public Shared Teleport2 As Vector3 = New Vector3(-933.4771, -383.6144, 38.9613)
+    Public Shared Teleport3 As Vector3 = New Vector3(-933.4771, -383.6144, 38.9613)
     Public Shared _Exit As Vector3 = New Vector3(-919.3095, -368.5584, 114.275)
     Public Shared Wardrobe As Vector3 = New Vector3(-903.3266, -364.2998, 113.074)
     Public Shared WardrobeDistance As Single
@@ -36,6 +37,7 @@ Public Class HLRichardMajestic
                 Garage = ReadCfgValue("Garage", langFile)
                 AptOptions = ReadCfgValue("AptOptions", langFile)
                 ExitApt = ReadCfgValue("ExitApt", langFile)
+                ExitAptHeli = ReadCfgValue("ExitAptHeli", langFile)
                 SellApt = ReadCfgValue("SellApt", langFile)
                 EnterGarage = ReadCfgValue("EnterGarage", langFile)
                 GrgOptions = ReadCfgValue("GrgOptions", langFile)
@@ -73,6 +75,7 @@ Public Class HLRichardMajestic
             _menuPool.Add(ExitMenu)
             ExitMenu.AddItem(New UIMenuItem(ExitApt))
             ExitMenu.AddItem(New UIMenuItem(EnterGarage))
+            ExitMenu.AddItem(New UIMenuItem(ExitAptHeli))
             ExitMenu.AddItem(New UIMenuItem(SellApt))
             ExitMenu.RefreshIndex()
         Catch ex As Exception
@@ -98,6 +101,16 @@ Public Class HLRichardMajestic
                 Game.FadeScreenOut(500)
                 Wait(&H3E8)
                 Game.Player.Character.Position = Teleport2
+                Wait(500)
+                Game.FadeScreenIn(500)
+                UnLoadMPDLCMap()
+                RichardMajestic.IsAtHome = False
+            If selectedItem.Text = ExitAptHeli Then
+                'Exit Apt to Helipad
+                ExitMenu.Visible = False
+                Game.FadeScreenOut(500)
+                Wait(&H3E8)
+                Game.Player.Character.Position = Teleport3
                 Wait(500)
                 Game.FadeScreenIn(500)
                 UnLoadMPDLCMap()
