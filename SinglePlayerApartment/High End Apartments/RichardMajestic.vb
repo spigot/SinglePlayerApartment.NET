@@ -869,7 +869,7 @@ Public Class RichardMajestic
             If My.Settings.RichardMajestic = "Enable" Then
 
                 'Enter Apartment
-                If (Not BuyMenu.Visible AndAlso Not playerPed.IsInVehicle AndAlso Not playerPed.IsDead) AndAlso (Apartment.EntranceDistance < 3.0 Or Apartment.HelipadEntrace < 3.0) Then
+                If (Not BuyMenu.Visible AndAlso Not playerPed.IsInVehicle AndAlso Not playerPed.IsDead) AndAlso (Apartment.EntranceDistance < 3.0 Or Apartment.HelipadEntraceDistance < 3.0) Then
                     DisplayHelpTextThisFrame(EnterApartment & Apartment.Name)
                     If Game.IsControlJustPressed(0, GTA.Control.Context) Then
                         Game.FadeScreenOut(500)
